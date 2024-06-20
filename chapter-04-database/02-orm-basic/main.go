@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -11,10 +9,11 @@ type Product struct {
 	ID    int `gorm:"primaryKey"`
 	Name  string
 	Price float64
+	gorm.Model
 }
 
 func main() {
-	dsn := "root:root@tcp(localhost:3306)/goexpert"
+	dsn := "root:root@tcp(localhost:3306)/goexpert?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		panic(err)
@@ -50,16 +49,17 @@ func main() {
 	// 	fmt.Println(product)
 	// }
 
-	var product Product
+	// update
+	// var product Product
+	// db.First(&product, 2)
+	// fmt.Println(product)
+	// product.Name = "Laptop edited"
+	// db.Save(&product)
 
-	db.First(&product, 1)
-	fmt.Println(product)
+	// db.First(&product, 1)
+	// fmt.Println(product)
 
-	product.Name = "Laptop edited"
-	db.Save(&product)
+	// delete
+	// db.Delete(&product, 2)
 
-	db.First(&product, 1)
-	fmt.Println(product)
-
-	db.Delete(&product, 1)
 }

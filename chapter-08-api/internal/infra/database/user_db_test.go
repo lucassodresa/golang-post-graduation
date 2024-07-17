@@ -14,7 +14,7 @@ func TestCreateUser(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	db.AutoMigrate(entity.User{})
+	db.AutoMigrate(&entity.User{})
 	user, _ := entity.NewUser("Lucas", "lucas@email.com", "123")
 	userDB := NewUser(db)
 
@@ -31,12 +31,11 @@ func TestCreateUser(t *testing.T) {
 }
 
 func TestFindByEmail(t *testing.T) {
-
 	db, err := gorm.Open(sqlite.Open("file::memory:"), &gorm.Config{})
 	if err != nil {
 		t.Error(err)
 	}
-	db.AutoMigrate(entity.User{})
+	db.AutoMigrate(&entity.User{})
 	user, _ := entity.NewUser("Lucas", "lucas@email.com", "123")
 	userDB := NewUser(db)
 

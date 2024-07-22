@@ -1,4 +1,4 @@
-module github.com/lucassodresa/golang-post-graduation/utils
+module github.com/lucassodresa/utils
 
 go 1.22.0
 

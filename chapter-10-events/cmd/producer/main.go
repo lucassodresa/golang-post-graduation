@@ -1,6 +1,6 @@
 package main
 
-import "github.com/lucassodresa/golang-post-graduation/utils/pkg/rabbitmq"
+import "github.com/lucassodresa/utils/pkg/rabbitmq"
 
 func main() {
 	ch, err := rabbitmq.OpenChannel()

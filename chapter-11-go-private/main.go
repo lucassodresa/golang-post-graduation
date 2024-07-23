@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/lucassodresa/golang-post-graduation/chapter-10-events/pkg/events"
+	"github.com/lucassodresa/fcutils-secret/pkg/events"
 )
 
 func main() {

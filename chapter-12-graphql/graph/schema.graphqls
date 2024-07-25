@@ -7,7 +7,7 @@ type Category {
 
 type Course {
   id: ID!
-  title: String!
+  name: String!
   description: String
   category: Category!
 }
@@ -18,7 +18,7 @@ input NewCategory {
 }
 
 input NewCourse {
-  title: String!
+  name: String!
   description: String
   categoryId: ID!
 }

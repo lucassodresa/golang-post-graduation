@@ -6,7 +6,6 @@ package graph
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/lucassodresa/golang-post-graduation/chapter-12-graphql/graph/model"
 )
@@ -26,17 +25,51 @@ func (r *mutationResolver) CreateCategory(ctx context.Context, input model.NewCa
 
 // CreateCourse is the resolver for the createCourse field.
 func (r *mutationResolver) CreateCourse(ctx context.Context, input model.NewCourse) (*model.Course, error) {
-	panic(fmt.Errorf("not implemented: CreateCourse - createCourse"))
+	course, err := r.CourseDB.Create(input.Name, *input.Description, input.CategoryID)
+	if err != nil {
+		return nil, err
+	}
+	return &model.Course{
+		ID:          course.ID,
+		Name:        course.Name,
+		Description: &course.Description,
+		Category:    &model.Category{ID: course.CategoryID},
+	}, nil
 }
 
 // Categories is the resolver for the categories field.
 func (r *queryResolver) Categories(ctx context.Context) ([]*model.Category, error) {
-	panic(fmt.Errorf("not implemented: Categories - categories"))
+	categories, err := r.CategoryDB.FindAll()
+	if err != nil {
+		return nil, err
+	}
+	var categpriesModel []*model.Category
+	for _, category := range categories {
+		categpriesModel = append(categpriesModel, &model.Category{
+			ID:          category.ID,
+			Name:        category.Name,
+			Description: &category.Description,
+		})
+	}
+	return categpriesModel, nil
 }
 
 // Courses is the resolver for the courses field.
 func (r *queryResolver) Courses(ctx context.Context) ([]*model.Course, error) {
-	panic(fmt.Errorf("not implemented: Courses - courses"))
+	courser, err := r.CourseDB.FindAll()
+	if err != nil {
+		return nil, err
+	}
+	var coursesModel []*model.Course
+	for _, course := range courser {
+		coursesModel = append(coursesModel, &model.Course{
+			ID:          course.ID,
+			Name:        course.Name,
+			Description: &course.Description,
+			Category:    &model.Category{ID: course.CategoryID},
+		})
+	}
+	return coursesModel, nil
 }
 
 // Mutation returns MutationResolver implementation.

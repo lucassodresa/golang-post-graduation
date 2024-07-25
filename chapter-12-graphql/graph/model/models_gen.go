@@ -11,7 +11,7 @@ type Category struct {
 
 type Course struct {
 	ID          string    `json:"id"`
-	Title       string    `json:"title"`
+	Name        string    `json:"name"`
 	Description *string   `json:"description,omitempty"`
 	Category    *Category `json:"category"`
 }
@@ -25,7 +25,7 @@ type NewCategory struct {
 }
 
 type NewCourse struct {
-	Title       string  `json:"title"`
+	Name        string  `json:"name"`
 	Description *string `json:"description,omitempty"`
 	CategoryID  string  `json:"categoryId"`
 }

@@ -1,3 +1,3 @@
 package main
 
-const text = "Hello world!"
+const text = "Hello world 2!"
